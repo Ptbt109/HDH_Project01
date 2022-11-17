@@ -1,5 +1,1 @@
-# HDH_Project01
-# HDH_Project01
-# HDH_Project01
-# OS_Project1
-# OS_Project1
+![](https://github.com/OS_Project1/Architecture.gif)
