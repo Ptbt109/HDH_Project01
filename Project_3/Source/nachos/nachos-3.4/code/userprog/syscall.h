@@ -36,6 +36,13 @@
 #define SC_ReadString	15
 #define SC_PrintString	16
 
+#define SC_CreateFile 17
+
+#define SC_Seek			18
+#define SC_CreateSemaphore	19
+#define SC_Wait			20
+#define SC_Signal		21
+
 #ifndef IN_ASM
 
 /* The system call interface.  These are the operations the Nachos
@@ -131,6 +138,18 @@ void Fork(void (*func)());
  * or not. 
  */
 void Yield();		
+
+int CreateFile(char *name);
+OpenFileId Open(char *name, int type);
+// int Close(OpenFileId id);
+
+int Seek(int pos, OpenFileId id);
+
+int CreateSemaphore(char* name, int semval);
+
+int Wait(char* name);
+
+int Signal(char* name);
 
 #endif /* IN_ASM */
 
