@@ -495,7 +495,6 @@ void ExceptionHandler(ExceptionType which)
 
 				case SC_Open:
 					Exception_Open();
-					Increase_ProgramCounter();
 					break;
 				
 
@@ -505,9 +504,7 @@ void ExceptionHandler(ExceptionType which)
 
 				case SC_Read:
 					Exception_Read();
-					Increase_ProgramCounter();
-					return;
-
+					break;
 				case SC_Write:
 					Exception_Write();
 					break;
@@ -533,7 +530,6 @@ void ExceptionHandler(ExceptionType which)
 					}			
 			
 					int res = pTab->ExitUpdate(exitStatus);
-					//machine->WriteRegister(2, res);
 
 					currentThread->FreeSpace();
 					currentThread->Finish();
@@ -541,7 +537,6 @@ void ExceptionHandler(ExceptionType which)
 				}
 				case SC_CreateSemaphore:
 				{
-					// int CreateSemaphore(char* name, int semval).
 					int virtAddr = machine->ReadRegister(4);
 					int semval = machine->ReadRegister(5);
 
@@ -552,8 +547,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Not enough memory in System");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;
+						break;
 					}
 			
 					int res = semTab->Create(name, semval);
@@ -564,8 +558,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Khong the khoi tao semaphore");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;				
+						break;		
 					}
 			
 					delete[] name;
@@ -585,8 +578,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Not enough memory in System");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;
+						break;
 					}
 			
 					int res = semTab->Wait(name);
@@ -597,8 +589,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Khong ton tai ten semaphore nay!");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;				
+						break;		
 					}
 			
 					delete[] name;
@@ -617,8 +608,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Not enough memory in System");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;
+						break;
 					}
 			
 					int res = semTab->Signal(name);
@@ -629,8 +619,7 @@ void ExceptionHandler(ExceptionType which)
 						printf("\n Khong ton tai ten semaphore nay!");
 						machine->WriteRegister(2, -1);
 						delete[] name;
-						Increase_ProgramCounter();
-						return;				
+						break;	
 					}
 			
 					delete[] name;
