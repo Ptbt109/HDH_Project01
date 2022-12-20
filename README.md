@@ -25,4 +25,3 @@ http://myshowz.infinityfreeapp.com/
 
 ## Bootstrap Layout 
 https://w3layouts.com/tag/bootstrap-templates/
-# Intro2SE_Project
